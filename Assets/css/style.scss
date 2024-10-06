@@ -1,0 +1,499 @@
+// Variáveis de Cores
+$azul-escuro: #2C3E50;
+$verde-menta: #2ECC71;
+$cinza-claro: #ECF0F1;
+$amarelo-solar: #F39C12;
+$branco: #FFFFFF;
+$preto: #000000;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// Estilos Gerais
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+button {
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 15px 50px;
+    background: $verde-menta;
+    cursor: pointer;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: fit-content;
+    color: $branco;
+    transition: 1s all;
+
+    @media (max-width: 768px) {
+        padding: 15px 50px;
+        font-size: 1rem;
+    }
+
+    &:hover{
+        background: rgba($verde-menta, 0.8);
+        transition: 1s all;
+        scale: (1.01);
+        box-shadow: 0 0 10px rgba($azul-escuro, 0.2);
+    }
+
+    i {
+        width: 30px;
+        height: 30px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background-color: $branco;
+        border-radius: 20px;
+        color: $verde-menta;
+    }
+}
+
+// Estilos do Header e Navbar
+header {
+    background-color: $branco;
+    box-shadow: 0 0 10px 0 rgba($preto, 0.2);
+    padding: 20px 10px;
+    border-bottom: 3px solid $amarelo-solar; // Borda em amarelo solar para destaque
+    transition: top 0.3s; // Transição suave para o efeito de fixação
+
+    &.fixed {
+        position: fixed; // Fica fixo ao rolar
+        top: 0;
+        left: 0;
+        width: 100%; // Largura total
+        z-index: 1000; // Fica acima de outros elementos
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative;
+        margin: auto;
+        max-width: 1200px;
+
+        .logo {
+            img {
+                max-height: 50px;
+                max-width: 100px;
+            }
+        }
+
+        #menu-icon {
+            display: none;
+            font-size: 24px;
+            color: $preto;
+            cursor: pointer;
+
+            @media (max-width: 768px) {
+                display: block;
+                position: relative;
+                z-index: 1000;
+            }
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            transition: left 0.3s ease;
+            z-index: 999;
+
+            &.active {
+                left: 0;
+            }
+
+            @media (max-width: 768px) {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 100vh;
+                width: 100%;
+                background-color: $branco;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+                margin: 0;
+                transition: left 0.3s ease; // Efeito ao abrir
+            }
+
+            li {
+                margin: 0;
+
+                @media (max-width: 768px) {
+                    padding: 20px 0;
+                }
+            }
+
+            a {
+                color: $preto;
+                text-decoration: none;
+                font-size: 16px;
+
+                &:hover {
+                    color: $verde-menta;
+                }
+            }
+        }
+
+        #cta {
+            @media (max-width: 768px) {
+                display: none;
+            }
+
+            a {
+                background-color: $verde-menta;
+                color: $branco;
+                padding: 10px 20px;
+                text-decoration: none;
+                font-weight: bold;
+
+                i {
+                    margin-right: 8px;
+                }
+
+                &:hover {
+                    background-color: darken($verde-menta, 10%);
+                }
+            }
+        }
+    }
+}
+
+main{
+    overflow: hidden;
+    width: 100%;
+
+    section.banner_section{
+        width: 100%;
+        padding: 30px 10px 0 10px;
+
+        @media (max-width: 768px) {
+            padding: 50px 10px 0 10px;
+        }
+
+        .container{
+            margin: auto;
+            max-width: 1200px;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+            }
+
+            .text {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                h1{
+                    font-weight: 100;
+                    text-transform: uppercase;
+                    font-size: 1rem;
+                    margin-bottom: 1rem;
+                    font-weight: 500;
+                }
+
+                h2 {
+                    font-size: 4rem;
+                    margin-bottom: 2rem;
+                    color: $azul-escuro;
+
+                    @media (max-width: 768px) {
+                        font-size: 2.5rem;
+                    }
+                }
+                
+                p {
+                    font-size: 1.2rem;
+                    margin-bottom: 2rem;
+                }
+            }
+
+            .composicao{
+                display: flex;
+                align-items: end;
+                position: relative; 
+
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    section.diferenciais_section {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+      
+        div {
+          text-align: center; 
+          background-color: rgba($cinza-claro, 30%); 
+          padding: 50px;
+          border: 1px solid rgba($amarelo-solar, 0.1);
+          transition: transform 0.3s; 
+      
+          &:hover {
+            transform: translateY(-10px); 
+            box-shadow: 0 0 10px rgba($preto, 0.1);
+            background-color: rgba($cinza-claro, 100%); 
+
+            h3 {color: $amarelo-solar;}
+            i {
+                background-color: rgba($amarelo-solar, 0.5);
+            }
+          }
+      
+          h3 {
+            margin: 10px 0;
+            color: $azul-escuro;
+          }
+      
+          p {
+            color: $preto; 
+            font-size: 14px; 
+          }
+      
+          i {
+            font-size: 40px; 
+            width: 70px;
+            height: 70px;
+            color: $cinza-claro; 
+            background-color: rgba($azul-escuro, 0.5);
+            border-radius: 50%;
+            padding: 10px;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            margin-bottom: 1rem;
+          }
+        }
+      
+        @media (max-width: 768px) {
+          grid-template-columns: repeat(2, 1fr); // Duas colunas em telas pequenas
+        }
+      
+        @media (max-width: 480px) {
+          grid-template-columns: 1fr; // Uma coluna em telas muito pequenas
+        }
+    }
+
+    .sobre_section {
+        min-height: 600px;
+        padding: 5rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba($verde-menta, 0.2);
+        position: relative;
+
+        &::after{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: $branco;
+            top: 0;
+            left: 0;
+            border-radius: 0 0 70rem 0;
+            z-index: 0;
+        }
+
+        .container{
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+
+            h1{
+                font-weight: 100;
+                text-transform: uppercase;
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                font-weight: 500;
+            }
+            
+            h2 {
+                font-size: 3rem;
+                margin-bottom: 2rem;
+                color: $azul-escuro;
+                max-width: 800px;
+
+                @media (max-width: 768px) {
+                    font-size: 2rem;
+                }
+            }
+            
+            p {
+                font-size: 1.2rem;
+                margin-bottom: 4rem;
+                max-width: 1000px;
+            }
+        }
+    }
+
+    section.servicos_section {
+        min-height: 600px;
+        padding: 5rem 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba($verde-menta, 0.2);
+        position: relative;
+
+        &::after{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: $branco;
+            top: 0;
+            left: 0;
+            border-radius: 70rem 0 0 0;
+            z-index: 0;
+        }
+
+        .container{
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            h1{
+                font-weight: 100;
+                text-transform: uppercase;
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                font-weight: 500;
+            }
+            
+            h2 {
+                font-size: 3rem;
+                margin-bottom: 5rem;
+                color: $azul-escuro;
+                max-width: 800px;
+
+                @media (max-width: 768px) {
+                    font-size: 2rem;
+                }
+            }   
+          
+            .servicos_box {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px; 
+                width: 100%;
+                margin-bottom: 5rem;
+
+              div {
+                background-color: $branco; 
+                border: 1px solid rgba($azul-escuro, 0.2);
+                padding: 20px; 
+                text-align: center; 
+                transition: transform 0.3s;
+                flex: 1;
+                min-width: 200px;
+                max-width: 300px;
+                position: relative;
+
+                &::after{
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    background: $verde-menta;
+                    top: 0;
+                    left: 0;
+                }
+            
+                &:hover {
+                  transform: translateY(-5px); // Elevação ao passar o mouse
+                }
+            
+                p {
+                  margin: 15px 0; // Margem em torno do parágrafo
+                  color: $preto; // Cor do texto
+                  font-size: 14px; // Tamanho da fonte do parágrafo
+                }
+            
+                a {
+                  text-decoration: none; // Remove sublinhado do link
+                  color: $verde-menta; // Cor do link
+                  font-weight: bold; // Texto em negrito
+            
+                  i {
+                    margin-right: 5px; // Espaçamento entre ícone e texto
+                  }
+            
+                  &:hover {
+                    text-decoration: underline; // Sublinha ao passar o mouse
+                  }
+                }
+              }
+            }
+          
+        }
+    }
+      
+}
+
+footer{
+    padding: 10px;
+    background: $verde-menta;
+
+    p{
+        text-align: center;
+        color: $branco;
+    }
+}
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366; /* Verde do WhatsApp */
+    color: #FFFFFF;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    font-size: 24px;
+    transition: background-color 0.3s ease;
+    z-index: 20;
+    
+    &:hover {
+        background-color: #128C7E; /* Tom mais escuro para hover */
+    }
+}
